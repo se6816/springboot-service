@@ -11,18 +11,32 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.stereotype.Service;
 import org.springframework.test.web.servlet.MockMvc;
 
+import com.example.security.config.securityConfig;
+import com.example.security.repository.userRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@WebMvcTest
+@WebMvcTest(excludeFilters= {
+		@ComponentScan.Filter(type=FilterType.ASSIGNABLE_TYPE, classes= {securityConfig.class})
+})
 public class UserTest {
 	
 	private final Logger logger= LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	private MockMvc mvc;
+	@MockBean
+	private userRepository userRepsitory;
 	
+	@MockBean
+	private BCryptPasswordEncoder passwordEncoder;
 	@Autowired
 	private ObjectMapper mp;
 	
@@ -40,7 +54,7 @@ public class UserTest {
 	@Test
 	public void test_not_user() throws UnsupportedEncodingException, Exception {
 		String reps=mvc.perform(get("/admin"))
-						.andExpect(status().isOk())
+						.andExpect(status().is4xxClientError())
 						.andReturn().getResponse().getContentAsString();
 		
 		logger.info(reps);
