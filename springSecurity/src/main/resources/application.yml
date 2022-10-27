@@ -9,9 +9,9 @@ server:
 
 spring:
   profiles:
-    includes: 
-        - oauth
-        - datasource
+    include: 
+      - oauth
+      - datasource
     
   jpa:
     hibernate:
