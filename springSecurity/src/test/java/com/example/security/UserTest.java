@@ -50,13 +50,5 @@ public class UserTest {
 		
 		logger.info(reps);
 	}
-	@DisplayName("1. user은 user에 접근")
-	@Test
-	public void test_not_user() throws UnsupportedEncodingException, Exception {
-		String reps=mvc.perform(get("/admin"))
-						.andExpect(status().is3xxRedirection())
-						.andReturn().getResponse().getContentAsString();
-		
-		logger.info(reps);
-	}
+	
 }
