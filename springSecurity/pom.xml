@@ -71,6 +71,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-oauth2-client</artifactId>
 		</dependency>
+		
   <dependency>
     <groupId>software.aws.rds</groupId>
     <artifactId>aws-mysql-jdbc</artifactId>
