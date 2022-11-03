@@ -54,7 +54,7 @@ public class UserTest {
 	@Test
 	public void test_not_user() throws UnsupportedEncodingException, Exception {
 		String reps=mvc.perform(get("/admin"))
-						.andExpect(status().is4xxClientError())
+						.andExpect(status().is3xxRedirection())
 						.andReturn().getResponse().getContentAsString();
 		
 		logger.info(reps);
