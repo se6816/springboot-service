@@ -17,7 +17,8 @@ cache:
     - '$HOME/.m2/repository'
     - '$HOME/.m2'
 
-before_script:"cd springSecurity/"
+before_script:
+  - cd springSecurity/
 # 지정한 브랜치가 푸쉬될 때 실행되는 명령어
 script: "./mvnw clean package"
 
