@@ -1,6 +1,6 @@
 language: java
 jdk:
-  - openjdk8
+  - openjdk11
 
 # 어느 브랜 치에 푸시될 떄 수행될지 결정
 branches:   
