@@ -19,6 +19,7 @@ cache:
 
 before_script:
   - cd springSecurity/
+  - chmod -x mvnw
 # 지정한 브랜치가 푸쉬될 때 실행되는 명령어
 script: "./mvnw clean package"
 
