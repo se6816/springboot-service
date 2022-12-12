@@ -8,7 +8,7 @@ branches:
     - main
 
 
-cd springSecurity
+cd springSecurity/
 
 # Travis CI 서버의 Home
 # 해당 디렉토리를 캐싱하여 같은 의존성을 다음 배포 떄 다시 받지 않도록 함
@@ -18,7 +18,7 @@ cache:
     - '$HOME/.m2'
     
 # 지정한 브랜치가 푸쉬될 때 실행되는 명령어
-script: "./mvnw clean package
+script: "./mvnw clean package"
 
 #CI 실행 완료 시 메일로 알림
 # CI 실행 완료 시 알람 메일
