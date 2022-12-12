@@ -1,0 +1,29 @@
+language: java
+jdk:
+  - openjdk8
+
+# 어느 브랜 치에 푸시될 떄 수행될지 결정
+branches:   
+  only:
+    - main
+
+
+cd springSecurity
+
+# Travis CI 서버의 Home
+# 해당 디렉토리를 캐싱하여 같은 의존성을 다음 배포 떄 다시 받지 않도록 함
+cache:
+  directories:
+    - '$HOME/.m2/repository'
+    - '$HOME/.m2'
+    
+# 지정한 브랜치가 푸쉬될 때 실행되는 명령어
+script: "./mvnw clean package
+
+#CI 실행 완료 시 메일로 알림
+# CI 실행 완료 시 알람 메일
+notifications:
+  email:
+     recipients:
+      - se6816@naver.com
+      
