@@ -44,6 +44,22 @@ deploy:
     on:
       branch: main
       # all_branches: true으로 사용해도 됨
+  - provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY # Travis repo Setting에서 설정한 환경설정 변수
+    secret_access_key: $AWS_SECRET_KEY
+    
+    bucket: springboot-service-build-file # S3 버킷 명
+    key: springboot-service.zip           # 빌드 파일
+    
+    bundle_type: zip                  # 압축 확장자
+    application: springboot-service                # codedeploy 애플리케이션 명
+    deployment_group: springboot-service-group   # codedeploy 배포 그룹 명
+    
+    region: ap-northeast-2
+    wait-until-deployed: true
+    
+      
+    
 #CI 실행 완료 시 메일로 알림
 # CI 실행 완료 시 알람 메일
 notifications:
