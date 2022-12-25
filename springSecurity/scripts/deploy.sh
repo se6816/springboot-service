@@ -2,7 +2,7 @@
 
 REPOSITORY=/home/ec2-user/app/step2
 PROJECT-NAME=springboot-service
-        
+
 echo ">Build 파일 복사"
 
 cp $REPOSITORY/zip/*.jar $REPOSITORY/
