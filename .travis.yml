@@ -23,9 +23,14 @@ script: "./mvnw clean package"
 
 # 배포 이전 작업으로 CodeDeploy는 Jar파일을 인식하지 못하므로 별도의 이름으로 zip으로 압축해야 한다.
 before_deploy:
-  - zip -r springboot-service *     # 현재 위치의 모든 파일을 springboot-service라는 이름으로 압축한다.
-  - mkdir -p deploy                # deploy라는 디렉토리를 Travis CI가 실행중인 위치에서 생성
-  - mv springboot-service.zip deploy/springboot-service.zip  # zip파일 이동
+  - mkdir -p before-deploy # zip에 포함시킬 파일들을 담은 폴더 생성, Travis CI는 S3로 디렉토리 단위로만 업로드 가능하다.
+  - cp scripts/*.sh before-deploy/
+  - cp appspec.yml before-deploy/
+  - cp target/*.jar before-deploy/
+  - cd before-deploy
+  - zip -r before-deploy *     # 현재 위치의 모든 파일을 springboot-service라는 이름으로 압축한다.
+  - cd ../ && mkdir -p deploy                # deploy라는 디렉토리를 Travis CI가 실행중인 위치에서 생성
+  - mv before-deploy/before-deploy.zip deploy/springboot-service.zip  # zip파일 이동
 
 # S3로 파일 업로드, CodeDeploy로 배포 등 외부 서비스와 연동될 행위들을 선언
 deploy:
