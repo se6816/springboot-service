@@ -1,6 +1,0 @@
-version: 0.0    # codedeploy version
-os: linux
-files:
-  - source: /   # Codedeploy에서 전달해준 파일 중 destination으로 이동시킬 대상을 지정 /의 경우 루트의 전체 파일을 칭함
-    destination: /home/ec2-user/app/step2/zip/  #  source에서 지정한 파일을 받을 위치
-    overwrite: yes           # 기존의 파일을 덮어쓸지 결정한다.
