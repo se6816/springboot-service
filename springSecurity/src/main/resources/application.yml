@@ -9,8 +9,7 @@ server:
 
 spring:
   profiles:
-    include: 
-      - real
+    include:
       - oauth
       - datasource
     
