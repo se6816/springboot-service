@@ -32,4 +32,5 @@ function find_idle_port()
       echo "8098"
     else
       echo "8097"
+    fi
 }
